@@ -34,7 +34,7 @@ public class YhHealthCert implements Serializable {
 	/**id*/
 	@TableId(type = IdType.ASSIGN_ID)
     @ApiModelProperty(value = "id")
-    private java.lang.Integer id;
+    private java.lang.String id;
 	/**员工id*/
 	@Excel(name = "员工id", width = 15)
     @ApiModelProperty(value = "员工id")
@@ -72,9 +72,9 @@ public class YhHealthCert implements Serializable {
     @ApiModelProperty(value = "上传人")
     private java.lang.String uploadUserId;
 	/**上传时间*/
-	@Excel(name = "上传时间", width = 15, format = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@Excel(name = "上传时间", width = 15, format = "yyyy-MM-dd")
+	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "上传时间")
     private java.util.Date uploadDate;
 	/**创建时间*/

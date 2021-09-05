@@ -12,8 +12,9 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import java.math.BigDecimal;
-import java.sql.Wrapper;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @Description: yh_health_cert
@@ -51,7 +52,7 @@ public class YhHealthCertServiceImpl extends ServiceImpl<YhHealthCertMapper, YhH
     }
     @Override
     public YhHealthCert edit(YhHealthCert yhHealthCert){
-        int id=yhHealthCert.getId();
+        String id=yhHealthCert.getId();
         yhHealthCertMapper.updateById(yhHealthCert);
         return yhHealthCertMapper.selectById(id);
     }
@@ -111,4 +112,5 @@ public class YhHealthCertServiceImpl extends ServiceImpl<YhHealthCertMapper, YhH
         }
         return true;
     }
+
 }

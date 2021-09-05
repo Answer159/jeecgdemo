@@ -39,7 +39,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.jeecg.common.aspect.annotation.AutoLog;
 
- /**
+/**
  * @Description: yh_health_cert
  * @Author: jeecg-boot
  * @Date:   2021-09-05
@@ -156,76 +156,78 @@ public class YhHealthCertController extends JeecgController<YhHealthCert, IYhHea
 		return Result.OK(yhHealthCert);
 	}
 
-	 @AutoLog(value = "上传文件")
-	 @ApiOperation(value = "文件上传")
-	 @GetMapping(value = "/uploadFile")
-	 public Result<?> uploadFile(HttpServletRequest request,String id,HttpServletResponse response){
-		 Result<?> result=new Result<>();
-		 YhHealthCert yhHealthCert=yhHealthCertService.get(id);
-		 MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		 MultipartFile file = multipartRequest.getFile("file");
-		 String filename=yhHealthCert.getUploadFileName();
-		 filename+=file.getOriginalFilename()+"?";
-		 yhHealthCert.setUploadFileName(filename);
+	@AutoLog(value = "上传文件")
+	@ApiOperation(value = "文件上传")
+	@GetMapping(value = "/uploadFile")
+	public Result<?> uploadFile(HttpServletRequest request,String id,HttpServletResponse response){
+		Result<?> result=new Result<>();
+		YhHealthCert yhHealthCert=yhHealthCertService.get(id);
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		MultipartFile file = multipartRequest.getFile("file");
+		String filename=yhHealthCert.getUploadFileName();
+		filename+=file.getOriginalFilename()+"?";
+		yhHealthCert.setUploadFileName(filename);
 
-		 return result;
-	 }
+		return result;
+	}
 
-	 @AutoLog(value = "删除文件")
-	 @ApiOperation(value = "文件删除")
-	 @GetMapping(value = "/deleteFile")
-	 public Result<?> deleteFile(HttpServletRequest request,String id,String fileName,HttpServletResponse response){
-		 try{
-			 Result<?> result=new Result<>();
-			 YhHealthCert yhHealthCert=yhHealthCertService.get(id);
-			 String files=yhHealthCert.getUploadFileName();
-			 String[] filename=files.split("\\?");
-			 String uploadFileName="";
-			 int flag=0;
-			 for(String f:filename){
-				 if(f.equals(fileName)){
-				 	flag=1;
-					 continue;
-				 }
-				 uploadFileName+=f+"?";
-			 }
-			 if(flag==0){
-			 	return Result.error("未找到相应的文件！");
-			 }
-			 yhHealthCert.setUploadFileName(uploadFileName);
-			 yhHealthCertService.updateById(yhHealthCert);
-			 result.setMessage(uploadFileName);
-			 return result;
-		 }
-		 catch (Exception e){
-			 e.printStackTrace();
-			 return Result.error("error");
-		 }
-	 }
+	@AutoLog(value = "删除文件")
+	@ApiOperation(value = "文件删除")
+	@GetMapping(value = "/deleteFile")
+	public Result<?> deleteFile(HttpServletRequest request,String id,String fileName,HttpServletResponse response){
+		try{
+			Result<?> result=new Result<>();
+			YhHealthCert yhHealthCert=yhHealthCertService.get(id);
+			String files=yhHealthCert.getUploadFileName();
+			String[] filename=files.split("\\?");
+			String uploadFileName="";
+			int flag=0;
+			for(String f:filename){
+				if(f.equals(fileName)){
+					flag=1;
+					continue;
+				}
+				uploadFileName+=f+"?";
+			}
+			if(flag==0){
+				return Result.error("未找到相应的文件！");
+			}
+			yhHealthCert.setUploadFileName(uploadFileName);
+			yhHealthCertService.updateById(yhHealthCert);
+			result.setMessage(uploadFileName);
+			return result;
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			return Result.error("error");
+		}
+	}
 
 
 
-	 /**
-    * 导出excel
-    *
-    * @param request
-    * @param yhHealthCert
-    */
-    @RequestMapping(value = "/exportXls")
-    public ModelAndView exportXls(HttpServletRequest request, YhHealthCert yhHealthCert) {
-        return super.exportXls(request, yhHealthCert, YhHealthCert.class, "yh_health_cert");
-    }
+	/**
+	 * 导出excel
+	 *
+	 * @param request
+	 * @param yhHealthCert
+	 */
+	@RequestMapping(value = "/exportXls")
+	public ModelAndView exportXls(HttpServletRequest request, YhHealthCert yhHealthCert) {
+		return super.exportXls(request, yhHealthCert, YhHealthCert.class, "yh_health_cert");
+	}
 
-    /**
-      * 通过excel导入数据
-    *
-    * @param request
-    * @param response
-    * @return
-    */
-    @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
-    public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
-        return super.importExcel(request, response, YhHealthCert.class);
-    }
+	/**
+	 * 通过excel导入数据
+	 *
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/importExcel", method = RequestMethod.POST)
+	public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
+		return super.importExcel(request, response, YhHealthCert.class);
+	}
 
 }
+
+
