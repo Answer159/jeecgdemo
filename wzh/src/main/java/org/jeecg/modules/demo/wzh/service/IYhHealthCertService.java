@@ -22,4 +22,7 @@ public interface IYhHealthCertService extends IService<YhHealthCert> {
 
     public boolean add(YhHealthCert yhHealthCert);
 
+    public List<YhHealthCert> alarm();
+
+    public boolean alarmedById(String id);
 }

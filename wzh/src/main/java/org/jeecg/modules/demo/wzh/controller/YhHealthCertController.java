@@ -2,10 +2,7 @@ package org.jeecg.modules.demo.wzh.controller;
 
 import java.security.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -91,6 +88,7 @@ public class YhHealthCertController extends JeecgController<YhHealthCert, IYhHea
 		LoginUser sysUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
 		yhHealthCert.setUploadUserId(sysUser.getId());
 		Date current_date = new Date();
+
 		yhHealthCert.setUploadDate(current_date);
 		yhHealthCert.setCreateTime(current_date);
 		yhHealthCertService.save(yhHealthCert);
