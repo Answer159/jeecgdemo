@@ -122,7 +122,7 @@ public class CommonController {
      * @param bizPath  自定义路径
      * @return
      */
-    public String uploadLocal(MultipartFile mf,String bizPath){
+    private String uploadLocal(MultipartFile mf,String bizPath){
         try {
             String ctxPath = uploadpath;
             String fileName = null;

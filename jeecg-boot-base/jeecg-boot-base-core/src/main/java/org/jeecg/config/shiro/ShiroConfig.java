@@ -71,12 +71,6 @@ public class ShiroConfig {
             }
         }
         // 配置不会被拦截的链接 顺序判断
-        filterChainDefinitionMap.put("/wzh/yhHealthCert/add","anon");
-        filterChainDefinitionMap.put("/wzh/yhHealthCert/delete","anon");
-        filterChainDefinitionMap.put("/wzh/yhHealthCert/edit","anon");
-        filterChainDefinitionMap.put("/wzh/yhHealthCert/list","anon");
-        filterChainDefinitionMap.put("/wzh/yhHealthCert/uploadFile","anon");
-        filterChainDefinitionMap.put("/wzh/yhHealthCert/deleteFile","anon");
         filterChainDefinitionMap.put("/sys/cas/client/validateLogin", "anon"); //cas验证登录
         filterChainDefinitionMap.put("/sys/randomImage/**", "anon"); //登录验证码接口排除
         filterChainDefinitionMap.put("/sys/checkCaptcha", "anon"); //登录验证码接口排除
