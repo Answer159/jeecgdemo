@@ -137,10 +137,14 @@ spring:
         master:
 #
 #          url: jdbc:mysql://localhost:3306/jeecg-boot?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
-          url: jdbc:mysql://172.16.201.58:3306/pilot_station?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
-          username: root
-          password: admin
-          driver-class-name: com.mysql.cj.jdbc.Driver
+#          url: jdbc:mysql://172.16.201.58:3306/pilot_station?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+#          username: root
+#          password: admin
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+            driver-class-name: oracle.jdbc.OracleDriver
+            url: jdbc:oracle:thin:@172.16.201.58:1521:gaoshu
+            username: jeecgboot
+            password: whut123
           # 多数据源配置
           #multi-datasource1:
           #url: jdbc:mysql://localhost:3306/jeecg-boot2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
@@ -184,7 +188,7 @@ mybatis-plus:
 minidao :
   base-package: org.jeecg.modules.jmreport.*
   #DB类型（mysql | postgresql | oracle | sqlserver| other）
-  db-type: mysql
+  db-type: mysql #mysql
 jeecg :
   # 本地：local\Minio：minio\阿里云：alioss
   uploadType: local
